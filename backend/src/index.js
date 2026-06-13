@@ -8,10 +8,12 @@ import path from "path";
 import job from "./lib/cron.js"
 import clerkWebhook from "./webhooks/clerk.webhook.js"
 
+const app = express()
+
 const PORT = process.env.PORT || 3000
 const publicDir = path.join(process.cwd(), "public");
 app.use("/api/webhooks/clerk", express.raw({ type: "application/json" }), clerkWebhook);
-const app = express()
+
 app.use(express.json());
 app.use(clerkMiddleware())
 app.use(cors({ origin:process.env.FRONTEND_URL,credentials:true }));
