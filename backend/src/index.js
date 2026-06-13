@@ -13,10 +13,9 @@ app.use(express.json());
 app.use(clerkMiddleware())
 app.use(cors({ origin:process.env.FRONTEND_URL,credentials:true }));
 
-app.get('/health',(req,res)=>{
-    res.send(" Server is working good!!!!")
-    
-})
+app.get("/health", (req, res) => {
+  res.status(200).json({ ok: true });
+});
 
 
 // if the public directory exists, serve the static files
